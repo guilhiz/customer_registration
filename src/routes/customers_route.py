@@ -4,13 +4,16 @@ from src.services import customers_service
 from src.models.customers_model import CustomerDB, CustomerSchema
 router = APIRouter()
 
-@router.post("/", response_model=CustomerDB, status_code=201)
+
+@router.post("/", response_model=str, status_code=201)
 async def create(payload: CustomerSchema):
-    existing_customer = await list_by_cpf(payload.cpf)
-    if existing_customer:
-        raise HTTPException(status_code=400, detail="Customer with this CPF already exists")
-    customer = await customers_service.create(payload)
-    return customer
+    try:
+        print("post2")
+        await customers_service.create(payload)
+        return "Cliente criado com sucesso"
+    except Exception as e:
+        print(f"Erro durante a criação do cliente: {str(e)}")
+        raise HTTPException(status_code=500, detail="Erro interno do servidor")
 
 @router.get("/{cpf}/", response_model=CustomerDB)
 async def list_by_cpf(cpf: str):

@@ -1,13 +1,10 @@
-# src/main.py
-
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
 
 from src.routes import customers_route as customers
-# from src.db import engine, metadata, database
+from src.db import engine, metadata, database
 
-# metadata.create_all(engine)
-
+metadata.create_all(engine)
 app = FastAPI()
 
 @app.get("/")
@@ -24,12 +21,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# @app.on_event("startup")
-# async def startup():
-#     await database.connect()
+@app.on_event("startup")
+async def startup():
+    await database.connect()
 
-# @app.on_event("shutdown")
-# async def shutdown():
-#     await database.disconnect()
+@app.on_event("shutdown")
+async def shutdown():
+    await database.disconnect()
 
-app.include_router( customers.router, prefix="/customers", tags=["customers"])  # Alteração no include_router
+app.include_router( customers.router, prefix="/customers", tags=["customers"])

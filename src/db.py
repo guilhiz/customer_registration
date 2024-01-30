@@ -1,5 +1,3 @@
-# src/db.py
-
 import os
 from sqlalchemy import (Column, Integer, String, Table, create_engine, MetaData, DateTime, func)
 from dotenv import load_dotenv
@@ -7,7 +5,7 @@ from databases import Database
 
 load_dotenv()
 # Database url if none is passed the default one is used
-DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://hello_fastapi:hello_fastapi@localhost/hello_fastapi_dev")
+DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://postgres:88795842@localhost:5432/postgres")
 
 # SQLAlchemy
 engine = create_engine(DATABASE_URL)

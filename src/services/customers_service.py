@@ -5,13 +5,14 @@ from src.db import customers, database
 async def create(payload: CustomerSchema):
     # Implemente a validação do CPF aqui antes de inserir no banco
     # ...
-
+    print("servicePost")
     query = customers.insert().values(
         name=payload.name,
         cpf=payload.cpf,
         birthdate=payload.birthdate
     )
-    return await database.execute(query=query)
+    await database.execute(query=query)
+    return None
 
 async def list_by_cpf(cpf: str):
     query = customers.select().where(cpf == customers.c.cpf)
