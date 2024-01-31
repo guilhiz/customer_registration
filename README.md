@@ -7,7 +7,7 @@
 ### 1. Clone the Repository
 
 ```bash
-git clone git@github.com:guilhiz/Igma_API.git
+git clone git@github.com:guilhiz/Customer_Registration.git
 ```
 
 
