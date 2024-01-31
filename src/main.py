@@ -12,7 +12,7 @@ app = FastAPI( title="API for customer registration.")
 def read_root():
     return {"Hello": "World"}
 
-
+origins = ["*"]
 
 app.add_middleware(
     CORSMiddleware,

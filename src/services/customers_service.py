@@ -5,7 +5,6 @@ from src.utils.cpf_validator import validate_cpf
 
 
 async def create(payload: CustomerSchema):
-    # Implemente a validação do CPF aqui antes de inserir no banco
     cleaned_cpf = validate_cpf(payload.cpf)
     query = customers.insert().values(
         name=payload.name,
