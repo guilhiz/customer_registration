@@ -15,7 +15,10 @@ async def create(payload: CustomerSchema):
     return None
 
 async def list_by_cpf(cpf: str):
-    query = customers.select().where(cpf == customers.c.cpf)
+    print(cpf)
+    cleaned_cpf = ''.join(filter(str.isdigit, cpf))
+    print(cleaned_cpf)
+    query = customers.select().where(cleaned_cpf == customers.c.cpf)
     customer = await database.fetch_one(query=query)
     if not customer:
         raise HTTPException(status_code=404, detail="Customer not found")
