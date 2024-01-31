@@ -6,12 +6,6 @@
 
 ### 1. Clone the Repository
 
-```bash
-git clone git@github.com:guilhiz/Customer_Registration.git
-```
-
-
-
 ### 2. Run the Application Using Docker
 
 ```bash
@@ -22,9 +16,9 @@ This command will launch the application in the background. Make sure you have D
 
 ### 3. Access the API
 
-After the Docker container is up and running, you can access the API at: http://localhost:8002/
+After the Docker container is up and running, you can access the API at: `http://localhost:8002/`
  
-**You can also explore the interactive API documentation by navigating to: http://localhost:8002/docs**
+**You can also explore the interactive API documentation by navigating to: `http://localhost:8002/docs`**
 
 ---
 
