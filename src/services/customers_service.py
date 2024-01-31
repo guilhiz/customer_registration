@@ -6,6 +6,12 @@ from src.utils.cpf_validator import validate_cpf
 
 async def create(payload: CustomerSchema):
     cleaned_cpf = validate_cpf(payload.cpf)
+
+    cpf_exists_query = customers.select().where(cleaned_cpf == customers.c.cpf)
+    existing_customer = await database.fetch_one(query=cpf_exists_query)
+    if existing_customer:
+        raise HTTPException(status_code=400, detail="Customer with this CPF already exists.")
+
     query = customers.insert().values(
         name=payload.name,
         cpf=cleaned_cpf,
@@ -19,7 +25,7 @@ async def list_by_cpf(cpf: str):
 
     query = customers.select().where(cleaned_cpf == customers.c.cpf)
     customer = await database.fetch_one(query=query)
-    
+
     if not customer:
         raise HTTPException(status_code=404, detail="Customer not found")
     return customer
