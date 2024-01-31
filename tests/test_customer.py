@@ -8,7 +8,7 @@ def test_validate_cpf_valid():
 def test_validate_cpf_invalid_characters():
     with pytest.raises(HTTPException) as exc_info:
         validate_cpf('abc.def.ghi-jkl')
-    assert exc_info.value.status_code == 400  
+    assert exc_info.value.status_code == 400
 def test_validate_cpf_invalid_length():
     with pytest.raises(HTTPException) as exc_info:
         validate_cpf('123.456.789-0123')
