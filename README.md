@@ -15,24 +15,24 @@
 # :rocket: How to Use
 
 ### 1. Clone the Repository
-
+  - Navigate to the Cloned Project Directory
 ### 2. Run the Application Using Docker
 
 ```bash
 docker-compose up -d
 ```
 
-This command will launch the application in the background. Make sure you have Docker installed on your system.
+- This command will launch the application in the background. Make sure you have Docker installed on your system.
 
 ### 3. Access the API
 
-After the Docker container is up and running, you can access the API at: `http://localhost:8002/`
+- After the Docker container is up and running, you can access the API at: `http://localhost:8002/`
  
-**You can also explore the interactive API documentation by navigating to: `http://localhost:8002/docs`**
+- **You can also explore the interactive API documentation by navigating to: `http://localhost:8002/docs`**
 
 ### 4. Running Tests
 
-To run tests, execute the following command in the root of the project:
+- To run tests, execute the following command in the root of the project:
 
 ```bash
 pytest tests/
