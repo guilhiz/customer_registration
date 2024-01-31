@@ -1,8 +1,17 @@
 <h1 align="center">API for customer registration</h1>
+![image](https://github.com/guilhiz/Customer_Registration/assets/109693663/cc30101d-0e46-46a7-8464-22c7dac23c59)
 
 ---
+# :robot: Tecnologias Utilizadas
 
-# How to Use
+- Python
+- FastAPI
+- PostgresSQL
+- SQLAlchemy
+- Pytest
+- Logging
+
+# :rocket: How to Use
 
 ### 1. Clone the Repository
 
@@ -20,9 +29,15 @@ After the Docker container is up and running, you can access the API at: `http:/
  
 **You can also explore the interactive API documentation by navigating to: `http://localhost:8002/docs`**
 
----
+### 4. Running Tests
 
-# Endpoints
+To run tests, execute the following command in the root of the project:
+
+```bash
+pytest tests/
+```
+
+# :gear: Endpoints
 
 #### 1. Create Customer
 
