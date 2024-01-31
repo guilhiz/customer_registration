@@ -12,6 +12,11 @@ services:
       - "5432:5432"
     volumes:
       - ./data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-q", "-d", "postgres", "-U", "postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
   app:
     build: .
@@ -19,7 +24,8 @@ services:
     ports:
       - "8002:8000"
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     volumes:
       - .:/app
     command: uvicorn run:app --reload --workers 1 --host 0.0.0.0 --port 8000

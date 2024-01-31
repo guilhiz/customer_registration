@@ -15,7 +15,7 @@ customers = Table(
     metadata,
     Column("id", Integer, primary_key=True),
     Column("name", String(100), nullable=False),
-    Column("cpf", String(11), nullable=False, index=True                                                ),
+    Column("cpf", String(11), nullable=False, unique=True, index=True                                                ),
     Column("birthdate", Date, nullable=False),
     Column("created_at", DateTime(timezone=True), nullable=False, default=func.now())
 )
