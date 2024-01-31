@@ -1,14 +1,14 @@
 from src.models.customers_model import CustomerSchema
 from src.db import customers, database
+from src.utils.cpf_validator import validate_cpf
 
 
 async def create(payload: CustomerSchema):
     # Implemente a validação do CPF aqui antes de inserir no banco
-    # ...
-    print("servicePost")
+    cleaned_cpf = validate_cpf(payload.cpf)
     query = customers.insert().values(
         name=payload.name,
-        cpf=payload.cpf,
+        cpf=cleaned_cpf,
         birthdate=payload.birthdate
     )
     await database.execute(query=query)

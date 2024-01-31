@@ -4,7 +4,7 @@ from pydantic import BaseModel, Field
 
 class CustomerSchema(BaseModel):
     name: str = Field(..., min_length=3, max_length=100)
-    cpf: str = Field(..., max_length=11)
+    cpf: str = Field(..., max_length=14)
     birthdate: dt
 
 

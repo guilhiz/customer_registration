@@ -8,12 +8,11 @@ router = APIRouter()
 @router.post("/", response_model=str, status_code=201)
 async def create(payload: CustomerSchema):
     try:
-        print("post2")
         await customers_service.create(payload)
         return "Cliente criado com sucesso"
     except Exception as e:
         print(f"Erro durante a criação do cliente: {str(e)}")
-        raise HTTPException(status_code=500, detail="Erro interno do servidor")
+        raise
 
 @router.get("/{cpf}/", response_model=CustomerDB)
 async def list_by_cpf(cpf: str):
