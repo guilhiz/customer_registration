@@ -1,5 +1,6 @@
 <h1 align="center">API for customer registration</h1>
-![image](https://github.com/guilhiz/Customer_Registration/assets/109693663/cc30101d-0e46-46a7-8464-22c7dac23c59)
+
+<img align="center" src="https://i.imgur.com/aII6Tvc.png" width="100%">
 
 ---
 # :robot: Tecnologias Utilizadas
