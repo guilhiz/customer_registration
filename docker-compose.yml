@@ -17,9 +17,14 @@ services:
     build: .
     container_name: igmaApi
     ports:
-      - "8002:8002"
+      - "8000:8000"
     depends_on:
       - db
+    env_file:
+      - .env
     volumes:
       - .:/app
     command: uvicorn run:app --reload
+
+volumes:
+  postgres-volume:

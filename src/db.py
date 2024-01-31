@@ -5,7 +5,7 @@ from databases import Database
 
 load_dotenv()
 # Database url if none is passed the default one is used
-DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://postgres:88795842@localhost:5432/postgres")
+DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://postgres:88795842@postgres:5432/postgres")
 
 # SQLAlchemy
 engine = create_engine(DATABASE_URL)

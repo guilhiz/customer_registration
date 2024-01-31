@@ -8,4 +8,4 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
-CMD ["uvicorn", "run:app", "--reload"]
+CMD ["uvicorn", "run:app", "--port 8000", "--workers 1"]
