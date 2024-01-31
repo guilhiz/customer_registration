@@ -1,4 +1,5 @@
 import sys
+import logging
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
 
@@ -6,13 +7,13 @@ from src.routes import customers_route as customers
 from src.db import engine, metadata, database
 
 metadata.create_all(engine)
-app = FastAPI()
+app = FastAPI( title="API for customer registration.")
 
 @app.get("/")
 def read_root():
     return {"Hello": "World"}
 
-origins = ["*"]
+
 
 app.add_middleware(
     CORSMiddleware,
@@ -22,7 +23,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-def receive_signal(signalNumber, frame):
+def receive_signal(signalNumber, _):
     print('Received:', signalNumber)
     sys.exit()
 @app.on_event("startup")
