@@ -1,32 +1,32 @@
 from fastapi import HTTPException
 
+def calculate_digit(cpf, end, weight):
+    total = 0
+    for i in range(end):
+        total += int(cpf[i]) * (weight - i)
+
+    remainder = total % 11
+    return 0 if remainder < 2 else 11 - remainder
+
 def validate_cpf(cpf):
-    # Remove caracteres não numéricos do CPF
+    # Remove non-numeric characters from CPF
     if not cpf.replace('.', '').replace('-', '').isdigit():
-        raise HTTPException(status_code=400, detail="CPF deve conter apenas números.")
-    print(cpf)
+        raise HTTPException(status_code=400, detail="CPF must contain only numbers.")
+
     cleaned_cpf = ''.join(filter(str.isdigit, cpf))
-    print(cpf)
-    # Verifica se o CPF tem 11 dígitos
-    if len(cpf) != 11:
-        raise HTTPException(status_code=400, detail="Verifique e insira um CPF válido com 11 números.")
 
-    # Cálculo do primeiro dígito verificador
-    soma = 0
-    for i in range(9):
-        soma += int(cpf[i]) * (10 - i)
-    resto = soma % 11
-    digito1 = 0 if resto < 2 else 11 - resto
+    # Check if CPF has 11 digits
+    if len(cleaned_cpf) != 11:
+        raise HTTPException(status_code=400, detail="Please check and enter a valid 11-digit CPF.")
 
-    # Cálculo do segundo dígito verificador
-    soma = 0
-    for i in range(10):
-        soma += int(cpf[i]) * (11 - i)
-    resto = soma % 11
-    digito2 = 0 if resto < 2 else 11 - resto
+    # Calculate the first verification digit
+    digit1 = calculate_digit(cleaned_cpf, 9, 10)
 
-    # Verifica se os dígitos calculados são iguais aos dígitos informados no CPF
-    if digito1 != int(cpf[9]) or digito2 != int(cpf[10]):
-        raise HTTPException(status_code=400, detail="CPF inválido")
+    # Calculate the second verification digit
+    digit2 = calculate_digit(cleaned_cpf, 10, 11)
+
+    # Verify if calculated digits match the provided CPF
+    if digit1 != int(cleaned_cpf[9]) or digit2 != int(cleaned_cpf[10]):
+        raise HTTPException(status_code=422, detail="Invalid CPF")
 
     return cleaned_cpf

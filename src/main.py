@@ -1,3 +1,4 @@
+import sys
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
 
@@ -21,8 +22,13 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+def receive_signal(signalNumber, frame):
+    print('Received:', signalNumber)
+    sys.exit()
 @app.on_event("startup")
 async def startup():
+    import signal
+    signal.signal(signal.SIGINT, receive_signal)
     await database.connect()
 
 @app.on_event("shutdown")

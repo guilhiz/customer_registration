@@ -9,9 +9,9 @@ router = APIRouter()
 async def create(payload: CustomerSchema):
     try:
         await customers_service.create(payload)
-        return "Cliente criado com sucesso"
+        return "Customer created successfully"
     except Exception as e:
-        print(f"Erro durante a criação do cliente: {str(e)}")
+        print(f"Error during customer creation: {str(e)}")
         raise
 
 @router.get("/{cpf}/", response_model=CustomerDB)
