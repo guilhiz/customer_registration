@@ -56,6 +56,15 @@ pytest tests/
   }
   ```
 
+- **Success Response:**
+  - Status: 201 Created
+  - Content:
+  ```json
+  {
+    "message": "Customer created successfully"
+  }
+  ```
+
 #### 2. List All Customers
 
 - **Method:** GET
@@ -65,6 +74,22 @@ pytest tests/
   - `page` (Optional, Default: 1): Page of the list
   - `size` (Optional, Default: 10): Page size
 
+- **Success Response:**
+  - Status: 200 OK
+  - Content:
+  ```json
+  [
+    {
+      "id": 0,
+      "name": "string",
+      "cpf": "string",
+      "birthdate": "2024-02-01",
+      "created_at": "2024-02-01T10:21:01.691Z"
+    }, ...
+    
+  ]
+  ```
+
 #### 3. List by CPF
 
 - **Method:** GET
@@ -72,5 +97,18 @@ pytest tests/
 - **Summary:** List customer by CPF
 - **Path Parameters:**
   - `cpf` (Required): Customer's CPF
+
+- **Success Response:**
+  - Status: 200 OK
+  - Content:
+  ```json
+  {
+    "id": 0,
+    "name": "string",
+    "cpf": "string",
+    "birthdate": "2024-02-01",
+    "created_at": "2024-02-01T10:22:20.731Z"
+  }
+  ```
 
 
